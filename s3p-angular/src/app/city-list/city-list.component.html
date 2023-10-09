@@ -1,0 +1,28 @@
+<div class="card my-5">
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">City</th>
+            <th scope="col">Country</th>
+            <th scope="col">Grade</th>
+            <th scope="col">Latitude</th>
+            <th scope="col">Months 18-30 degrees</th>
+            <th scope="col">Rain days</th>
+            <th scope="col">Close to the Sea</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let city of cities">            
+            <td>{{ city.name }}</td>
+            <td>{{ city.country }}</td>
+            <td>{{ grade(city) }}</td>
+            <td>{{ city.latitude }}</td>
+            <td>{{ city.monthsBetween18And30 }}</td>
+            <td>{{ city.rainDaysInYear }}</td>
+            <td>{{ city.closeToWater }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
