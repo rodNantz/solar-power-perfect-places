@@ -17,10 +17,13 @@ export class CityListComponent implements OnInit {
   ngOnInit() {
     this.cityService.findAll().subscribe((data: City[]) => {
       this.cities = data;
+      this.cities.forEach(c => {
+        c.grade = this.calcGrade(c);
+      });
     });
   }
 
-  grade(city : City) : number {
+  private calcGrade(city : City) : number {
     var goodLat = this.percentage(0, 66,
                                   city.latitude > 66 ? 0 : city.latitude); 
     var goodDays = this.percentage(0, 365,
