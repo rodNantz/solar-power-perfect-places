@@ -7,5 +7,6 @@ export class City {
   rainDaysInYear: number = 365;
   monthsBetween18And30: number = 0;
   closeToWater: boolean = false;
+  grade: number = 0;
 
 }
