@@ -17,15 +17,17 @@ export class CityListComponent implements OnInit {
   ngOnInit() {
     this.cityService.findAll().subscribe((data: City[]) => {
       this.cities = data;
-      // for (let key of [1,2,3,4,5,6,7,8,9,10]){
-      //   this.cities = this.cities.concat(data);
+      // for (let key of [1,2,3,4,5]){
+      //   this.cities = this.cities.concat(this.cities);
       // }
       
       this.cities.forEach(c => {
         c.grade = this.calcGrade(c);
       });
+      this.cities.sort((ca, cb) => cb.grade - ca.grade)
     });
   }
+
 
   private calcGrade(city : City) : number {
     var goodLat = this.percentage(0, 66,
@@ -36,7 +38,16 @@ export class CityListComponent implements OnInit {
                                     city.monthsBetween18And30);
     var goodBeach = city.closeToWater ? 1 : 0;
 
-    return (goodLat + goodDays + goodWarm + goodBeach) / 4;
+    return this.calcMedium(goodLat, goodDays, goodWarm, goodBeach);
+  }
+
+
+  private calcMedium(...nos : number[]) : number {
+    let sum = 0;
+    nos.forEach(n => {
+      sum += n;
+    });
+    return sum / nos.length;
   }
 
   // returns values from 0 to 1

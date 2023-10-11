@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,20 +8,22 @@ import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 export class AppComponent {
   title = 's3p-angular';
 
-  // @ViewChild("js-logo")
-  // imgChild!: ElementRef;
+  constructor(private renderer: Renderer2) {}
 
-  
   ngOnInit() {
-    // console.log(this.imgChild.nativeElement);
   }
 
-  @HostListener('window:scroll', ['$event']) // for window scroll events
+  @HostListener('window:scroll', ['$event'])
   onScroll(event: any) {
-    // console.log(this.imgChild.nativeElement);
-    // var theta = document.documentElement.scrollTop / 50 % Math.PI;
+    var theta = document.documentElement.scrollTop / 500 % Math.PI;
 
-    // this.imgChild.nativeElement.transform = 'rotate(' + theta + 'rad)';
+    const degree = 90;
+    const image = document.getElementById('js-logo');
+    this.renderer.setStyle(
+      image,
+      'transform',
+      `rotate(${theta}rad)`
+    )
   }
  
 }
