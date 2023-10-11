@@ -17,6 +17,10 @@ export class CityListComponent implements OnInit {
   ngOnInit() {
     this.cityService.findAll().subscribe((data: City[]) => {
       this.cities = data;
+      // for (let key of [1,2,3,4,5,6,7,8,9,10]){
+      //   this.cities = this.cities.concat(data);
+      // }
+      
       this.cities.forEach(c => {
         c.grade = this.calcGrade(c);
       });
